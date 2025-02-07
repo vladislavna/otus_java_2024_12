@@ -5,17 +5,17 @@ import java.util.Deque;
 
 public class CustomerReverseOrder {
 
-    private final Deque<Customer> сustomerReverseOrder;
+    private final Deque<Customer> dequeCustomerReverse;
 
     public CustomerReverseOrder() {
-        сustomerReverseOrder = new ArrayDeque<>();
+        dequeCustomerReverse = new ArrayDeque<>();
     }
 
     public void add(Customer customer) {
-        сustomerReverseOrder.push(customer);
+        dequeCustomerReverse.push(customer);
     }
 
     public Customer take() {
-        return сustomerReverseOrder.pop();
+        return dequeCustomerReverse.pop();
     }
 }

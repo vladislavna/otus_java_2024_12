@@ -1,5 +1,4 @@
-package homework.customAnnotations;
-
+package homework.customannotations;
 
 import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
@@ -7,5 +6,4 @@ import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
-public @interface Testable {
-}
+public @interface Testable {}

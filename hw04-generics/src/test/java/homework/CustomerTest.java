@@ -4,12 +4,10 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CustomerTest {
-
 
     @Test
     @DisplayName("Проверяем, что класс Customer не сломан")
