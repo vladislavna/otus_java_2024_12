@@ -8,6 +8,6 @@ docker ps
 docker run hello-world
 docker run --rm hello-world
 
-docker run --name ubuntu-check -it ubuntu bash
-docker start ubuntu-check
-docker exec -it ubuntu-check bash
+docker run --name ubuntu-test -it ubuntu bash
+docker start ubuntu-test
+docker exec -it ubuntu-test bash
