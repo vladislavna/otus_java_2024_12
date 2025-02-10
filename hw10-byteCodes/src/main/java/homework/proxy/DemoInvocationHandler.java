@@ -22,7 +22,7 @@ class DemoInvocationHandler implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        if (myClassMethods.contains(ReflectionHelper.buildMethodInfo(method))) {
+        if (myClassMethods.contains(ReflectionHelper.buildMethodPreview(method))) {
             logger.info("executed method: {}, param: {}", method.getName(), args);
         }
         return method.invoke(myClass, args);
