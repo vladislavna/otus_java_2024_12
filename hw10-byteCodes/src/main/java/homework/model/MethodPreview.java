@@ -9,5 +9,5 @@ import lombok.Getter;
 @EqualsAndHashCode
 public class MethodPreview {
     String name;
-    Object[] args;
+    Object[] params;
 }

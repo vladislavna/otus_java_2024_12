@@ -12,7 +12,7 @@ public class ReflectionHelper {
             Object objClass, Class<? extends java.lang.annotation.Annotation> logClass) {
         return Arrays.stream(objClass.getClass().getDeclaredMethods())
                 .filter(method -> checkAnnotation(method, logClass))
-                .map(method -> buildMethodInfo(method))
+                .map(method -> buildMethodPreview(method))
                 .collect(Collectors.toSet());
     }
 
@@ -20,10 +20,10 @@ public class ReflectionHelper {
         return method.isAnnotationPresent(logClass);
     }
 
-    public static MethodPreview buildMethodInfo(Method method) {
+    public static MethodPreview buildMethodPreview(Method method) {
         return MethodPreview.builder()
                 .name(method.getName())
-                .args(method.getParameterTypes())
+                .params(method.getParameterTypes())
                 .build();
     }
 }
