@@ -1,6 +1,5 @@
 package homework.proxy;
 
-import homework.TestLoggingInterface;
 import homework.annotations.Log;
 import homework.model.MethodPreview;
 import homework.utils.ReflectionHelper;
@@ -10,12 +9,12 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-class DemoInvocationHandler implements InvocationHandler {
+class DemoInvocationHandler<T> implements InvocationHandler {
     private static final Logger logger = LoggerFactory.getLogger(Ioc.class);
-    private final TestLoggingInterface myClass;
+    private final T myClass;
     private final Set<MethodPreview> myClassMethods;
 
-    DemoInvocationHandler(TestLoggingInterface myClass) {
+    public DemoInvocationHandler(T myClass) {
         this.myClass = myClass;
         this.myClassMethods = ReflectionHelper.findMethodsByAnnotation(myClass, Log.class);
     }
