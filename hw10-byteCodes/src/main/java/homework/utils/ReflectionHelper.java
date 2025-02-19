@@ -8,11 +8,15 @@ import java.util.stream.Collectors;
 
 public class ReflectionHelper {
 
+    private ReflectionHelper() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static Set<MethodPreview> findMethodsByAnnotation(
             Object objClass, Class<? extends java.lang.annotation.Annotation> logClass) {
         return Arrays.stream(objClass.getClass().getDeclaredMethods())
                 .filter(method -> checkAnnotation(method, logClass))
-                .map(method -> buildMethodPreview(method))
+                .map(ReflectionHelper::buildMethodPreview)
                 .collect(Collectors.toSet());
     }
 

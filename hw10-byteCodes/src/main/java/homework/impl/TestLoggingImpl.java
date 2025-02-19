@@ -4,10 +4,9 @@ import homework.TestLoggingInterface;
 import homework.annotations.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.otus.aop.proxy.MyClassImpl;
 
 public class TestLoggingImpl implements TestLoggingInterface {
-    private static final Logger logger = LoggerFactory.getLogger(MyClassImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(TestLoggingImpl.class);
 
     @Log
     public void calculation(int first) {

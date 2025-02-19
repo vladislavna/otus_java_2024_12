@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 class DemoInvocationHandler<T> implements InvocationHandler {
-    private static final Logger logger = LoggerFactory.getLogger(Ioc.class);
+    private static final Logger logger = LoggerFactory.getLogger(DemoInvocationHandler.class);
     private final T myClass;
     private final Set<MethodPreview> myClassMethods;
 
