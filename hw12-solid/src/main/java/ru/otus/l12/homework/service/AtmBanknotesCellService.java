@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import ru.otus.l12.homework.exception.NotEnoughCashException;
 import ru.otus.l12.homework.model.BanknoteEntity;
 import ru.otus.l12.homework.utils.BanknotesDenominationEnum;
-import ru.otus.l12.homework.utils.ErrorsEnum;
 
 public class AtmBanknotesCellService {
 
@@ -59,7 +58,7 @@ public class AtmBanknotesCellService {
         }
 
         if (cash > 0) {
-            throw new NotEnoughCashException(ErrorsEnum.ERR_NOT_ENOUGH.getMessage());
+            throw new NotEnoughCashException(cash);
         }
         availableBanknotes = availableBanknotesCopy;
         return banknotesEntity;

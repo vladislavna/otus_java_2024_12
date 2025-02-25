@@ -10,11 +10,11 @@ public class AtmUtils {
 
     public void validationBeforeWithDraw(int cash) {
         int minDenomination = BanknotesDenominationEnum.getMinDenomination();
-        if (cash < BanknotesDenominationEnum.getMinDenomination()) {
-            throw new MinCheckException(ErrorsEnum.ERR_MIN_CHECK.getMessage());
+        if (cash < minDenomination) {
+            throw new MinCheckException(minDenomination);
         }
         if (cash % minDenomination != 0) {
-            throw new MinCheckException(ErrorsEnum.ERR_WRONG_DEM.getMessage());
+            throw new MinCheckException(cash);
         }
     }
 
@@ -24,9 +24,9 @@ public class AtmUtils {
             Integer randomInt = randomGenerator();
             if (randomInt != 0) {
                 banknotesEntities.add(BanknoteEntity.builder()
-                    .denomination(value)
-                    .countDenomination(randomInt)
-                    .build());
+                        .denomination(value)
+                        .countDenomination(randomInt)
+                        .build());
             }
         }
         return banknotesEntities;
