@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.random.RandomGenerator;
 import ru.otus.l12.homework.exception.MinCheckException;
+import ru.otus.l12.homework.exception.WrongDemException;
 import ru.otus.l12.homework.model.BanknoteEntity;
 
 public class AtmUtils {
@@ -14,7 +15,7 @@ public class AtmUtils {
             throw new MinCheckException(minDenomination);
         }
         if (cash % minDenomination != 0) {
-            throw new MinCheckException(cash);
+            throw new WrongDemException(cash);
         }
     }
 
@@ -33,6 +34,6 @@ public class AtmUtils {
     }
 
     protected Integer randomGenerator() {
-        return (Integer) RandomGenerator.getDefault().ints(0, 5).findAny().getAsInt();
+        return RandomGenerator.getDefault().ints(0, 5).findAny().getAsInt();
     }
 }

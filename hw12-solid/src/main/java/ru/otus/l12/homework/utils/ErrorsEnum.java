@@ -1,5 +1,8 @@
 package ru.otus.l12.homework.utils;
 
+import lombok.Getter;
+
+@Getter
 public enum ErrorsEnum {
     ERR_NOT_ENOUGH("Not enough cash for operation: "),
     ERR_WRONG_DEM("Cash cannot be issued: "),
@@ -9,9 +12,5 @@ public enum ErrorsEnum {
 
     ErrorsEnum(String message) {
         this.message = message;
-    }
-
-    public String getMessage() {
-        return message;
     }
 }
