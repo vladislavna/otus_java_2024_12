@@ -7,6 +7,7 @@ import ru.otus.l12.homework.exception.NotEnoughCashException;
 import ru.otus.l12.homework.model.BanknoteEntity;
 import ru.otus.l12.homework.utils.BanknotesDenominationEnum;
 
+@SuppressWarnings("java:S1640")
 public class AtmBanknotesCellService {
 
     private Map<BanknotesDenominationEnum, Integer> availableBanknotes;

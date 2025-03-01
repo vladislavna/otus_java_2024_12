@@ -7,6 +7,7 @@ import ru.otus.l12.homework.model.BanknoteEntity;
 import ru.otus.l12.homework.service.impl.AtmSmartServiceImpl;
 import ru.otus.l12.homework.utils.AtmUtils;
 
+@SuppressWarnings({"java:S2629", "java:S3457"})
 public class AtmApp {
     private static final Logger logger = LoggerFactory.getLogger(AtmApp.class);
 
