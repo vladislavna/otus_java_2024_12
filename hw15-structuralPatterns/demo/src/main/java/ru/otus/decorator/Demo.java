@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 public class Demo {
     private static final Logger logger = LoggerFactory.getLogger(Demo.class);
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         var ds = new DataSourceImpl();
         printer(ds);
 
