@@ -11,6 +11,7 @@ public class AtmBanknotesCellService {
 
     private Map<BanknotesDenominationEnum, Integer> availableBanknotes;
 
+    @SuppressWarnings("java:S1640")
     public AtmBanknotesCellService() {
         this.availableBanknotes = new HashMap<>();
     }
@@ -21,6 +22,7 @@ public class AtmBanknotesCellService {
         }
     }
 
+    @SuppressWarnings("java:S135")
     public List<BanknoteEntity> withDrawBanknotes(int cash) {
         List<BanknoteEntity> banknotesEntity = new ArrayList<>();
         Map<BanknotesDenominationEnum, Integer> availableBanknotesCopy = new HashMap<>();

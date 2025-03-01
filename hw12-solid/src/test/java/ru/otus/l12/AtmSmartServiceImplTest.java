@@ -14,7 +14,7 @@ import ru.otus.l12.homework.service.impl.AtmSmartServiceImpl;
 import ru.otus.l12.homework.utils.AtmUtils;
 import ru.otus.l12.homework.utils.BanknotesDenominationEnum;
 
-public class AtmSmartServiceImplTest {
+class AtmSmartServiceImplTest {
     private static AtmSmartServiceImpl atmService;
     private static AtmUtils atmUtils;
 

@@ -27,7 +27,7 @@ public class AtmApp {
         List<BanknoteEntity> banknoteEntities = atmService.withDrawBanknotes(cash);
         logger.info("WithDrawCash:\n");
         for (BanknoteEntity banknoteEntity : banknoteEntities) {
-            logger.info(banknoteEntity.toString());
+            logger.info("banknoteEntity: {}", banknoteEntity.toString());
         }
         logger.info("LeftOversBanknotes After: {}\n", atmService.viewLeftOversBanknotes());
     }

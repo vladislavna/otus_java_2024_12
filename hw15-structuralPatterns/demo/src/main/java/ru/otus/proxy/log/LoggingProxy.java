@@ -1,15 +1,10 @@
 package ru.otus.proxy.log;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import ru.otus.proxy.security.SecurityProxy;
-
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 class LoggingHandler implements InvocationHandler {
 
@@ -35,15 +30,16 @@ class LoggingHandler implements InvocationHandler {
         }
     }
 
-    public static <T> T wrap(Object subject, Class cls) {
-        return (T) Proxy.newProxyInstance(LoggingProxy.class.getClassLoader(), new Class[] {cls}, new LoggingHandler(subject));
-    }
+    //    public static <T> T wrap(Object subject, Class<Map> cls) {
+    //        return (T) Proxy.newProxyInstance(
+    //                LoggingProxy.class.getClassLoader(), new Class[] {cls}, new LoggingHandler(subject));
+    //    }
 }
 
 public class LoggingProxy {
     public static void main(String[] args) {
-        var map = LoggingHandler.<Map<Integer, String>>wrap(new HashMap<Integer, String>(), Map.class);
-        map.put(42, "Hello");
-        map.get(42);
+        //        var map = LoggingHandler.<Map<Integer, String>>wrap(new HashMap<Integer, String>(), Map.class);
+        //        map.put(42, "Hello");
+        //        map.get(42);
     }
 }

@@ -20,6 +20,7 @@ public enum BanknotesDenominationEnum {
         return denomination;
     }
 
+    @SuppressWarnings("java:S2259")
     public static int getMinDenomination() {
         return Arrays.stream(BanknotesDenominationEnum.values())
                 .min(Comparator.naturalOrder())
