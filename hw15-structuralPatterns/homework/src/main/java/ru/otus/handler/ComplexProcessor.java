@@ -42,6 +42,7 @@ public class ComplexProcessor implements Handler {
         listeners.remove(listener);
     }
 
+    @SuppressWarnings("java:S4507")
     private void notify(Message msg) {
         listeners.forEach(listener -> {
             try {

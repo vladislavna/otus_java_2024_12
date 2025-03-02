@@ -1,5 +1,6 @@
 package ru.otus.proxy.lazy;
 
+@SuppressWarnings("java:S125")
 public class LazyProxy implements HeavyObject {
     private HeavyObject heavyObject = null;
 
