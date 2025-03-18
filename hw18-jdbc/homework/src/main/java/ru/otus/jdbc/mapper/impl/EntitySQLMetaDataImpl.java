@@ -8,34 +8,36 @@ import ru.otus.jdbc.mapper.EntitySQLMetaData;
 import ru.otus.utils.Constants;
 
 /** Создает SQL - запросы */
+@SuppressWarnings("java:S1068")
 public class EntitySQLMetaDataImpl implements EntitySQLMetaData {
 
     private final EntityClassMetaData<?> entityClassMetaData;
 
+    private String selectAllSql;
+    private String selectByIdSql;
+    private String insertSql;
+    private String updateSql;
+
     public EntitySQLMetaDataImpl(EntityClassMetaData<?> entityClassMetaData) {
         this.entityClassMetaData = entityClassMetaData;
+        this.selectAllSql = getSelectAllSql();
+        this.selectByIdSql = getSelectByIdSql();
+        this.insertSql = getInsertSql();
+        this.updateSql = getUpdateSql();
     }
 
     @Override
     public String getSelectAllSql() {
-        String allFieldsString = entityClassMetaData.getAllFields().stream()
-                .map(Field::getName)
-                .collect(Collectors.joining(Constants.DELIMITER));
-
-        return String.format(Constants.SELECT_ALL_EXP, allFieldsString, entityClassMetaData.getName())
-                .toUpperCase();
+        return String.format("select * from %s", entityClassMetaData.getName()).intern();
     }
 
     @Override
     public String getSelectByIdSql() {
-        String idField = entityClassMetaData.getIdField().getName();
-        String selectAllSql = getSelectAllSql();
-
-        StringBuilder stringBuilder = new StringBuilder(selectAllSql)
-                .append(String.format(Constants.WHERE_CONDITION, idField))
-                .append(Constants.QUESTION_MARK);
-
-        return stringBuilder.toString().toUpperCase();
+        return String.format(
+                        "select * from %s where %s = ?",
+                        entityClassMetaData.getName(),
+                        entityClassMetaData.getIdField().getName())
+                .intern();
     }
 
     @Override
@@ -47,8 +49,10 @@ public class EntitySQLMetaDataImpl implements EntitySQLMetaData {
                 .map(field -> Constants.QUESTION_MARK)
                 .collect(Collectors.joining(Constants.DELIMITER));
 
-        return String.format(Constants.INSERT_EXP, entityClassMetaData.getName(), fieldsWithoutIdString, questions)
-                .toUpperCase();
+        return String.format(
+                        "insert into %s ( %s ) values ( %s )",
+                        entityClassMetaData.getName(), fieldsWithoutIdString, questions)
+                .intern();
     }
 
     @Override
@@ -58,11 +62,7 @@ public class EntitySQLMetaDataImpl implements EntitySQLMetaData {
                 .map(field -> field.getName().concat(Constants.EQUALS_QUESTION_MARK))
                 .collect(Collectors.joining(Constants.DELIMITER));
 
-        StringBuilder stringBuilder = new StringBuilder()
-                .append(String.format(Constants.UPDATE_EXP, entityClassMetaData.getName(), parameters))
-                .append(String.format(Constants.WHERE_CONDITION, idField))
-                .append(Constants.QUESTION_MARK);
-
-        return stringBuilder.toString().toUpperCase();
+        return String.format("update %s set %s where %s = ?", entityClassMetaData.getName(), parameters, idField)
+                .intern();
     }
 }

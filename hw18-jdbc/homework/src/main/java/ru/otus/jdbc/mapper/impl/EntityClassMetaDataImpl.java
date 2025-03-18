@@ -7,16 +7,25 @@ import java.util.List;
 import java.util.Objects;
 import ru.otus.crm.annotation.Id;
 import ru.otus.jdbc.mapper.EntityClassMetaData;
-import ru.otus.jdbc.mapper.model.MetaDataInfo;
 
 /** "Разбирает" объект на составные части */
-@SuppressWarnings("java:S112")
+@SuppressWarnings({"java:S112", "java:S1068"})
 public class EntityClassMetaDataImpl<T> implements EntityClassMetaData<T> {
 
     private final Class<T> clazz;
+    private String name;
+    private Constructor<T> constructor;
+    private Field idField;
+    private List<Field> allFields;
+    private List<Field> fieldsWithoutId;
 
     public EntityClassMetaDataImpl(Class<T> clazz) {
         this.clazz = clazz;
+        this.name = getName();
+        this.constructor = getConstructor();
+        this.idField = getIdField();
+        this.allFields = getAllFields();
+        this.fieldsWithoutId = getFieldsWithoutId();
     }
 
     @Override
@@ -38,8 +47,8 @@ public class EntityClassMetaDataImpl<T> implements EntityClassMetaData<T> {
 
     @Override
     public Field getIdField() {
-        List<Field> allFields = getAllFields();
-        return allFields.stream()
+        List<Field> allFieldsList = getAllFields();
+        return allFieldsList.stream()
                 .filter(field -> Objects.nonNull(field.getAnnotation(Id.class)))
                 .findFirst()
                 .orElseThrow();
@@ -52,20 +61,9 @@ public class EntityClassMetaDataImpl<T> implements EntityClassMetaData<T> {
 
     @Override
     public List<Field> getFieldsWithoutId() {
-        List<Field> allFields = getAllFields();
-        return allFields.stream()
+        List<Field> allFieldsList = getAllFields();
+        return allFieldsList.stream()
                 .filter(field -> Objects.isNull(field.getAnnotation(Id.class)))
                 .toList();
-    }
-
-    @Override
-    public MetaDataInfo<T> getMetaDataInfo() {
-        return MetaDataInfo.<T>builder()
-                .constructor(getConstructor())
-                .name(getName())
-                .idField(getIdField())
-                .allFields(getAllFields())
-                .fieldsWithoutId(getFieldsWithoutId())
-                .build();
     }
 }

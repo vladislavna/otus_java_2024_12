@@ -12,7 +12,6 @@ import java.util.Optional;
 import ru.otus.core.repository.DataTemplate;
 import ru.otus.core.repository.executor.DbExecutor;
 import ru.otus.exception.DataTemplateJdbcException;
-import ru.otus.jdbc.mapper.model.MetaDataInfo;
 
 /** Сохраняет объект в базу, читает объект из базы */
 @SuppressWarnings({"java:S1068", "java:S3011"})
@@ -20,12 +19,13 @@ public class DataTemplateJdbc<T> implements DataTemplate<T> {
 
     private final DbExecutor dbExecutor;
     private final EntitySQLMetaData entitySQLMetaData;
-    private final MetaDataInfo<T> metaDataInfo;
+    private final EntityClassMetaData<T> entityClassMetaData;
 
-    public DataTemplateJdbc(DbExecutor dbExecutor, EntitySQLMetaData entitySQLMetaData, MetaDataInfo<T> metaDataInfo) {
+    public DataTemplateJdbc(
+            DbExecutor dbExecutor, EntitySQLMetaData entitySQLMetaData, EntityClassMetaData<T> entityClassMetaData) {
         this.dbExecutor = dbExecutor;
         this.entitySQLMetaData = entitySQLMetaData;
-        this.metaDataInfo = metaDataInfo;
+        this.entityClassMetaData = entityClassMetaData;
     }
 
     @Override
@@ -74,7 +74,9 @@ public class DataTemplateJdbc<T> implements DataTemplate<T> {
         try {
             List<Object> listObjects = listFieldsToListObjects(object);
             dbExecutor.executeStatement(
-                    connection, entitySQLMetaData.getUpdateSql(), List.of(listObjects, metaDataInfo.getIdField()));
+                    connection,
+                    entitySQLMetaData.getUpdateSql(),
+                    List.of(listObjects, entityClassMetaData.getIdField()));
         } catch (Exception e) {
             throw new DataTemplateJdbcException(e);
         }
@@ -82,9 +84,9 @@ public class DataTemplateJdbc<T> implements DataTemplate<T> {
 
     private T createEntity(ResultSet resultSet) {
         try {
-            Constructor<T> constructor = metaDataInfo.getConstructor();
+            Constructor<T> constructor = entityClassMetaData.getConstructor();
             T object = constructor.newInstance();
-            List<Field> allFields = metaDataInfo.getAllFields();
+            List<Field> allFields = entityClassMetaData.getAllFields();
             for (Field field : allFields) {
                 field.setAccessible(true);
                 field.set(object, resultSet.getObject(field.getName()));
@@ -98,7 +100,7 @@ public class DataTemplateJdbc<T> implements DataTemplate<T> {
     private List<Object> listFieldsToListObjects(T object) {
         try {
             List<Object> listObjects = new ArrayList<>();
-            List<Field> fieldsWithoutId = metaDataInfo.getFieldsWithoutId();
+            List<Field> fieldsWithoutId = entityClassMetaData.getFieldsWithoutId();
             for (Field field : fieldsWithoutId) {
                 field.setAccessible(true);
                 listObjects.add(field.get(object));
