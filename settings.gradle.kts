@@ -13,6 +13,11 @@ include("hw17-nio")
 include("hw18-jdbc:demo")
 include("hw18-jdbc:homework")
 
+include("hw21-jpql:class-demo")
+include("hw21-jpql:homework-template")
+
+include("hw22-cache")
+
 pluginManagement {
     val jgitver: String by settings
     val dependencyManagement: String by settings
