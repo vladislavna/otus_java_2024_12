@@ -1,7 +1,5 @@
 package ru.otus.crm.model;
 
-import static java.util.List.copyOf;
-
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +57,11 @@ public class Client implements Cloneable {
                 this.id,
                 this.name,
                 this.address == null ? null : this.address.clone(),
-                this.phones == null ? null : copyOf(this.phones));
+                this.phones == null
+                        ? null
+                        : this.phones.stream()
+                                .map(phone -> new Phone(phone.getId(), phone.getNumber(), this))
+                                .toList());
     }
 
     @Override
