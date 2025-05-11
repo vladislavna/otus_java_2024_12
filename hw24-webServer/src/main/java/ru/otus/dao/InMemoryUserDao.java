@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.Random;
 import ru.otus.model.User;
 
+@SuppressWarnings({"java:S2068", "java:S2245"})
 public class InMemoryUserDao implements UserDao {
 
     public static final String DEFAULT_PASSWORD = "11111";
