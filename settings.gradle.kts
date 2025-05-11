@@ -20,12 +20,12 @@ include("hw21-jpql:homework-template")
 
 include("hw22-cache")
 
-//include("hw23-redis:counter")
-//include("hw23-redis:data-source")
-//include("hw23-redis:data-transformer")
-//include("hw23-redis:data-listener")
-//
-//include("hw24-webServer")
+include("hw23-redis:counter")
+include("hw23-redis:data-source")
+include("hw23-redis:data-transformer")
+include("hw23-redis:data-listener")
+
+include("hw24-webServer")
 //
 //include("hw25-di:class-demo")
 //include("hw25-di:homework-template")
