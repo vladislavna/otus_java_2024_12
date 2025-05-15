@@ -1,6 +1,5 @@
 package ru.otus.server;
 
-import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,18 +10,18 @@ import org.eclipse.jetty.security.Constraint;
 import org.eclipse.jetty.security.LoginService;
 import org.eclipse.jetty.security.authentication.BasicAuthenticator;
 import org.eclipse.jetty.server.Handler;
-import ru.otus.dao.UserDao;
+import ru.otus.services.DBServiceClient;
 import ru.otus.services.TemplateProcessor;
 
-public class UsersWebServerWithBasicSecurity extends UsersWebServerSimple {
+public class ClientsWebServerWithBasicSecurity extends ClientsWebServerSimple {
     private static final String ROLE_NAME_USER = "user";
     private static final String ROLE_NAME_ADMIN = "admin";
 
     private final LoginService loginService;
 
-    public UsersWebServerWithBasicSecurity(
-            int port, LoginService loginService, UserDao userDao, Gson gson, TemplateProcessor templateProcessor) {
-        super(port, userDao, gson, templateProcessor);
+    public ClientsWebServerWithBasicSecurity(
+            int port, LoginService loginService, DBServiceClient dbServiceClient, TemplateProcessor templateProcessor) {
+        super(port, dbServiceClient, templateProcessor);
         this.loginService = loginService;
     }
 
@@ -39,7 +38,7 @@ public class UsersWebServerWithBasicSecurity extends UsersWebServerSimple {
         });
 
         ConstraintSecurityHandler security = new ConstraintSecurityHandler();
-        // как декодировать стороку с юзером:паролем https://www.base64decode.org/
+        // как декодировать строку с юзером:паролем https://www.base64decode.org/
         security.setAuthenticator(new BasicAuthenticator());
 
         security.setLoginService(loginService);
