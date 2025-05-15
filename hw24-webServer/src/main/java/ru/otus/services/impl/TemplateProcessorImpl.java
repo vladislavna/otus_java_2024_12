@@ -1,4 +1,4 @@
-package ru.otus.services;
+package ru.otus.services.impl;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Map;
+import ru.otus.services.TemplateProcessor;
 
 public class TemplateProcessorImpl implements TemplateProcessor {
 

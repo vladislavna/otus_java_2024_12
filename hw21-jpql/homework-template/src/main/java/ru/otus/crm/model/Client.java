@@ -45,7 +45,7 @@ public class Client implements Cloneable {
         this.name = name;
         this.address = address;
         if (phones != null) {
-            phones.stream().forEach(phone -> phone.setClient(this));
+            phones.forEach(phone -> phone.setClient(this));
             this.phones.addAll(phones);
         }
     }
