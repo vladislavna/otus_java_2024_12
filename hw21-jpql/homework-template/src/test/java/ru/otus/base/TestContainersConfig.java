@@ -15,7 +15,7 @@ public class TestContainersConfig {
             super(IMAGE_VERSION);
         }
 
-        public static CustomPostgreSQLContainer getInstance() {
+        public static CustomPostgreSQLContainer getonfigClassInstance() {
             if (container == null) {
                 container = new CustomPostgreSQLContainer();
             }
