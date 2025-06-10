@@ -75,10 +75,7 @@ public class AppComponentsContainerImpl implements AppComponentsContainer {
             Constructor<?> constructor = configClass.getDeclaredConstructor();
             constructor.setAccessible(true);
             return constructor.newInstance();
-        } catch (NoSuchMethodException
-                | InstantiationException
-                | IllegalAccessException
-                | InvocationTargetException e) {
+        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             throw new DependencyInjectionException(e.getMessage());
         }
     }
