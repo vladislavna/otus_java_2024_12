@@ -26,10 +26,10 @@ include("hw23-redis:data-transformer")
 include("hw23-redis:data-listener")
 
 include("hw24-webServer")
-//
-//include("hw25-di:class-demo")
-//include("hw25-di:homework-template")
-//
+
+include("hw25-di:class-demo")
+include("hw25-di:homework")
+
 //include("hw26-springBootMvc")
 
 pluginManagement {
