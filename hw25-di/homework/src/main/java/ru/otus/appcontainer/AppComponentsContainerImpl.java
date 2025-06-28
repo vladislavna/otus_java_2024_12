@@ -9,7 +9,7 @@ import ru.otus.appcontainer.api.AppComponentsContainer;
 import ru.otus.appcontainer.api.AppComponentsContainerConfig;
 import ru.otus.exceptions.DependencyInjectionException;
 
-@SuppressWarnings("squid:S1068")
+@SuppressWarnings({"squid:S1068", "java:S3011"})
 public class AppComponentsContainerImpl implements AppComponentsContainer {
 
     private final List<Object> appComponents = new ArrayList<>();
@@ -75,7 +75,10 @@ public class AppComponentsContainerImpl implements AppComponentsContainer {
             Constructor<?> constructor = configClass.getDeclaredConstructor();
             constructor.setAccessible(true);
             return constructor.newInstance();
-        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+        } catch (NoSuchMethodException
+                | InstantiationException
+                | IllegalAccessException
+                | InvocationTargetException e) {
             throw new DependencyInjectionException(e.getMessage());
         }
     }

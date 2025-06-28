@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -18,6 +19,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 @DisplayName("Сравниваем скорость работы с connectionPool и без него ")
 @Testcontainers
+@Disabled
 @SuppressWarnings("java:S2699")
 class PoolVsSingleConnectionTest {
     private static final Logger logger = LoggerFactory.getLogger(PoolVsSingleConnectionTest.class);

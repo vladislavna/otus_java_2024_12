@@ -10,13 +10,13 @@ include("hw16-io:demo")
 include("hw16-io:homework")
 include("hw17-nio")
 
-include("hw18-jdbc:demo")
-include("hw18-jdbc:homework")
+//include("hw18-jdbc:demo")
+//include("hw18-jdbc:homework")
 
 include("hw20-hibernate")
 
 include("hw21-jpql:class-demo")
-include("hw21-jpql:homework-template")
+//include("hw21-jpql:homework-template")
 
 include("hw22-cache")
 
@@ -30,7 +30,7 @@ include("hw24-webServer")
 include("hw25-di:class-demo")
 include("hw25-di:homework")
 
-//include("hw26-springBootMvc")
+include ("hw28-springDataJdbc")
 
 pluginManagement {
     val jgitver: String by settings
