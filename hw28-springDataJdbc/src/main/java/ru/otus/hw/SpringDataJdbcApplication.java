@@ -1,11 +1,11 @@
-package ru.otus;
+package ru.otus.hw;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DbServiceDemo {
+public class SpringDataJdbcApplication {
     public static void main(String[] args) {
-        SpringApplication.run(DbServiceDemo.class, args);
+        SpringApplication.run(SpringDataJdbcApplication.class, args);
     }
 }
